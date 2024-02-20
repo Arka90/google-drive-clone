@@ -5,24 +5,24 @@ const Searchbar = () => {
   return (
     <Box
       sx={{
-        width: "75rem",
+        width: "52rem",
         bgcolor: "#e9eef6",
         borderRadius: "3rem",
-        padding: "0.5rem",
+        padding: "0.08rem",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-around",
       }}
     >
       <IconButton>
-        <Search fontSize="large" />
+        <Search fontSize="medium" />
       </IconButton>
       <InputBase
         placeholder="Search in drive"
-        sx={{ width: "88%", fontSize: "1.8rem" }}
+        sx={{ width: "88%", fontSize: "1.3rem" }}
       />
       <IconButton>
-        <Tune fontSize="large" />
+        <Tune fontSize="medium" />
       </IconButton>
     </Box>
   );

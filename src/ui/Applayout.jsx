@@ -1,142 +1,87 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import AppBar from "@mui/material/AppBar";
+import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
-
 import Drawer from "@mui/material/Drawer";
+import Toolbar from "@mui/material/Toolbar";
 
-import Typography from "@mui/material/Typography";
-import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { Outlet } from "react-router-dom";
 import logo from "../assets/logo.svg";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+import Sidepannel from "../components/Sidepannel";
 
+import NewButton from "../components/NewButton";
+
+import SidebarOptionsContainer from "../components/SidebarOptionsContainer";
+import Progressbar from "../components/Progressbar";
 const drawerWidth = 240;
 
-function Applayout(props) {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [isClosing, setIsClosing] = React.useState(false);
-
-  const handleDrawerClose = () => {
-    setIsClosing(true);
-    setMobileOpen(false);
-  };
-
-  const handleDrawerTransitionEnd = () => {
-    setIsClosing(false);
-  };
-
-  const drawer = (
-    <Box>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: "1.3rem",
-          padding: "1.4rem",
-        }}
-      >
-        <img src={logo} width="45rem" />
-        <Typography variant="h3">Drive</Typography>
-      </Box>
-
-      <Button
-        variant="outlined"
-        sx={{
-          bgcolor: "#fff",
-          color: "black",
-          boxShadow: 2,
-          fontSize: "1.5rem",
-          padding: "1.4rem 2.8rem",
-          marginLeft: "2rem",
-          marginTop: "1rem",
-          borderRadius: "1.8rem",
-          marginBottom: "0.6rem",
-        }}
-      >
-        + New
-      </Button>
-    </Box>
-  );
-
-  // Remove this const when copying and pasting into your project.
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
-
+export default function Applayout() {
   return (
-    <>
-      <Box sx={{ display: "flex" }}>
-        <Navbar drawerWidth={drawerWidth} />
-
-        <Box
-          component="nav"
+    <Box sx={{ display: "flex" }}>
+      <Navbar drawerWidth={drawerWidth} />
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
+            width: drawerWidth,
+            boxSizing: "border-box",
+            borderWidth: 0,
+          },
+        }}
+        PaperProps={{
+          sx: {
+            backgroundColor: "#F8FAFD",
+          },
+        }}
+        variant="permanent"
+        anchor="left"
+      >
+        <Toolbar
           sx={{
-            width: { sm: drawerWidth },
-            flexShrink: { sm: 0 },
-            bgcolor: "#F8FAFD",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            cursor: "pointer",
           }}
-          aria-label="mailbox folders"
         >
-          <Drawer
-            container={container}
-            variant="temporary"
-            open={mobileOpen}
-            onTransitionEnd={handleDrawerTransitionEnd}
-            onClose={handleDrawerClose}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            sx={{
-              display: { xs: "block", sm: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-                borderWidth: 0,
-              },
-            }}
-            PaperProps={{
-              sx: {
-                backgroundColor: "#F8FAFD",
-              },
-            }}
-          >
-            {drawer}
-          </Drawer>
-          <Drawer
-            variant="permanent"
-            sx={{
-              display: { xs: "none", sm: "block" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-                borderWidth: 0,
-              },
-            }}
-            PaperProps={{
-              sx: {
-                backgroundColor: "#F8FAFD",
-              },
-            }}
-            open
-          >
-            {drawer}
-          </Drawer>
+          <img src={logo} width="38px" />
+          <Typography variant="h5">Drive</Typography>
+        </Toolbar>
+        <NewButton />
+        <SidebarOptionsContainer />
+        <Box sx={{ width: "100%" }}>
+          <Progressbar />
         </Box>
-      </Box>
+
+        <Box sx={{ width: "80%", margin: "15px auto" }}>
+          <Button
+            sx={{
+              border: "1px solid black",
+              color: "#1967d2",
+              borderRadius: "50px",
+            }}
+            variant="outlined"
+          >
+            Get more storage
+          </Button>
+        </Box>
+      </Drawer>
       <Box
         component="main"
         sx={{
-          marginLeft: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
+          flexGrow: 1,
+          bgcolor: "background.default",
+          p: 3,
+          height: "100vh",
+          borderRadius: "30px",
+          overflow: "hidden",
         }}
-        bgcolor="red"
-        height="100%"
       >
+        <Toolbar />
         <Outlet />
       </Box>
-    </>
+      <Sidepannel />
+    </Box>
   );
 }
-
-export default Applayout;

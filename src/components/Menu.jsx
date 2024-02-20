@@ -22,7 +22,7 @@ export default function BasicMenu() {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-        sx={{ width: "2.8rem", height: "2.8rem" }}
+        sx={{ width: "1.8rem", height: "1.8rem" }}
       />
       <Menu
         id="basic-menu"

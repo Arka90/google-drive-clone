@@ -1,4 +1,4 @@
-import { Avatar, Box, IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 
 import Searchbar from "./Searchbar";
@@ -8,10 +8,10 @@ import BasicMenu from "./Menu";
 const Navbar = ({ drawerWidth }) => {
   return (
     <AppBar
-      position="static"
+      position="fixed"
       elevation={0}
       sx={{
-        padding: "1.4rem",
+        padding: "0.6rem",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -32,13 +32,13 @@ const Navbar = ({ drawerWidth }) => {
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <IconButton>
-            <HelpOutline fontSize="large" />
+            <HelpOutline fontSize="medium" />
           </IconButton>
           <IconButton>
-            <Settings fontSize="large" />
+            <Settings fontSize="medium" />
           </IconButton>
           <IconButton>
-            <Apps fontSize="large" />
+            <Apps fontSize="medium" />
           </IconButton>
           <IconButton>
             <BasicMenu />
